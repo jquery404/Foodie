@@ -3,4 +3,16 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="transparent_gray">#4f0e0d0e</color>
+    <color name="white">#fff</color>
+
+
+
+
+
+    <color name="card_cat_title_bg">@color/transparent_gray</color>
+
+
+
 </resources>

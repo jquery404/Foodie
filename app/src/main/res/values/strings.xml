@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Foodie</string>
+
+    <string name="base_url">https://api.github.com</string>
 </resources>
