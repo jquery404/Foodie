@@ -4,50 +4,58 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import android.widget.Toast
 import com.jquery404.foodie.R
-import com.jquery404.foodie.api.service.IMenuCategoryApiService
-import com.jquery404.foodie.main.adapters.MenuCategoryAdapter
+import com.jquery404.foodie.api.service.IMenuItemApiService
+import com.jquery404.foodie.main.adapters.ViewCartAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_menu_categories.*
+import kotlinx.android.synthetic.main.activity_view_cart.*
 
-
-class MenuCategoryActivity : BaseCompatActivity() {
-
+class ViewCartActivity : BaseCompatActivity(), View.OnClickListener {
 
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
-    private lateinit var menuCategoryAdapter: MenuCategoryAdapter
+    private lateinit var viewCartAdapter: ViewCartAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_menu_categories)
+        setContentView(R.layout.activity_view_cart)
+
         init()
     }
 
     private fun init() {
+        btnPlaceOrder.setOnClickListener(this)
 
-        menuCategoryAdapter = MenuCategoryAdapter(this)
-        rvMenuCat.layoutManager = LinearLayoutManager(this)
-        rvMenuCat.adapter = menuCategoryAdapter
+        viewCartAdapter = ViewCartAdapter(this)
+        rvViewCart.layoutManager = LinearLayoutManager(this)
+        rvViewCart.adapter = viewCartAdapter
 
-        fetchCategories()
+        fetchMenuList()
     }
 
-    private fun fetchCategories() {
-        println("calling")
-        val apiService = IMenuCategoryApiService.create()
+    private fun fetchMenuList() {
+        val apiService = IMenuItemApiService.create()
         compositeDisposable.add(
-                apiService.getCategories("1")
+                apiService.getItems("2", "1")
                         .subscribeOn(Schedulers.io())
                         .unsubscribeOn(Schedulers.computation())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({ menuCategoryAdapter.setMovies(it.record) },
+                        .subscribe({ viewCartAdapter.setItems(it.record) },
                                 {
                                     Toast.makeText(applicationContext, it.message, Toast.LENGTH_SHORT).show()
                                 })
         )
+    }
+
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.btnPlaceOrder -> {
+                OrderConfirmationActivity.start(this)
+            }
+        }
     }
 
     override fun onStop() {
@@ -57,9 +65,10 @@ class MenuCategoryActivity : BaseCompatActivity() {
 
     companion object {
         fun start(context: Context) {
-            val intent = Intent(context, MenuCategoryActivity::class.java)
+            val intent = Intent(context, ViewCartActivity::class.java)
             intent.putExtra("flag", context.javaClass.getSimpleName())
             context.startActivity(intent)
         }
     }
+
 }

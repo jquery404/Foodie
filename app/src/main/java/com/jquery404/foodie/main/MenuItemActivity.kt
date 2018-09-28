@@ -6,44 +6,43 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
 import com.jquery404.foodie.R
-import com.jquery404.foodie.api.service.IMenuCategoryApiService
-import com.jquery404.foodie.main.adapters.MenuCategoryAdapter
+import com.jquery404.foodie.api.service.IMenuItemApiService
+import com.jquery404.foodie.main.adapters.MenuItemAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_menu_categories.*
+import kotlinx.android.synthetic.main.activity_menu_item.*
 
-
-class MenuCategoryActivity : BaseCompatActivity() {
-
+class MenuItemActivity : BaseCompatActivity() {
 
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
-    private lateinit var menuCategoryAdapter: MenuCategoryAdapter
+    private var catId: String? = null
+    private lateinit var menuItemAdapter: MenuItemAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_menu_categories)
+        setContentView(R.layout.activity_menu_item)
         init()
     }
 
     private fun init() {
+        catId = intent.extras.getString("CAT_ID", "")
 
-        menuCategoryAdapter = MenuCategoryAdapter(this)
-        rvMenuCat.layoutManager = LinearLayoutManager(this)
-        rvMenuCat.adapter = menuCategoryAdapter
+        menuItemAdapter = MenuItemAdapter(this)
+        rvMenuItem.layoutManager = LinearLayoutManager(this)
+        rvMenuItem.adapter = menuItemAdapter
 
-        fetchCategories()
+        fetchMenuList()
     }
 
-    private fun fetchCategories() {
-        println("calling")
-        val apiService = IMenuCategoryApiService.create()
+    private fun fetchMenuList() {
+        val apiService = IMenuItemApiService.create()
         compositeDisposable.add(
-                apiService.getCategories("1")
+                apiService.getItems("2", catId.toString())
                         .subscribeOn(Schedulers.io())
                         .unsubscribeOn(Schedulers.computation())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({ menuCategoryAdapter.setMovies(it.record) },
+                        .subscribe({ menuItemAdapter.setItems(it.record) },
                                 {
                                     Toast.makeText(applicationContext, it.message, Toast.LENGTH_SHORT).show()
                                 })
@@ -56,9 +55,14 @@ class MenuCategoryActivity : BaseCompatActivity() {
     }
 
     companion object {
-        fun start(context: Context) {
-            val intent = Intent(context, MenuCategoryActivity::class.java)
-            intent.putExtra("flag", context.javaClass.getSimpleName())
+        fun start(context: Context, extras: Bundle? = null) {
+            val intent = Intent(context, MenuItemActivity::class.java)
+            extras?.let {
+                intent.putExtras(extras)
+            } ?: run {
+                intent.putExtra("flag", context.javaClass.getSimpleName())
+            }
+
             context.startActivity(intent)
         }
     }

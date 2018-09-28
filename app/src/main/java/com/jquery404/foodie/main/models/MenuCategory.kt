@@ -4,7 +4,5 @@ class MenuCategory {
 
     var id : Int = 0
     var title : String? = null
-    var year : String? = null
-    var genre : String? = null
-    var poster : String? = null
+    var thumb : String? = null
 }
