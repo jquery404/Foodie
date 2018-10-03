@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.jquery404.foodie.R
+import com.jquery404.foodie.helpers.ActivityHelper
+import com.jquery404.foodie.main.MenuDetailsActivity
 import com.jquery404.foodie.main.MenuItemActivity
 import com.jquery404.foodie.main.models.MenuCategory
 import com.squareup.picasso.Picasso
@@ -30,7 +32,7 @@ class MenuCategoryAdapter(private val ctx: Context) :
         return menuCategoryList.size
     }
 
-    fun setMovies(record: List<MenuCategory>) {
+    fun setCategories(record: List<MenuCategory>) {
         menuCategoryList.addAll(record)
         notifyDataSetChanged()
     }
@@ -54,7 +56,7 @@ class MenuCategoryAdapter(private val ctx: Context) :
         override fun onClick(v: View) {
             val extras = Bundle()
             extras.putString("CAT_ID", id.toString())
-            MenuItemActivity.start(v.context, extras)
+            ActivityHelper.start(v.context, MenuItemActivity::class.java, extras)
         }
 
     }

@@ -36,14 +36,13 @@ class MenuCategoryActivity : BaseCompatActivity() {
     }
 
     private fun fetchCategories() {
-        println("calling")
         val apiService = IMenuCategoryApiService.create()
         compositeDisposable.add(
                 apiService.getCategories("1")
                         .subscribeOn(Schedulers.io())
                         .unsubscribeOn(Schedulers.computation())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({ menuCategoryAdapter.setMovies(it.record) },
+                        .subscribe({ menuCategoryAdapter.setCategories(it.record) },
                                 {
                                     Toast.makeText(applicationContext, it.message, Toast.LENGTH_SHORT).show()
                                 })
@@ -53,13 +52,5 @@ class MenuCategoryActivity : BaseCompatActivity() {
     override fun onStop() {
         compositeDisposable.clear()
         super.onStop()
-    }
-
-    companion object {
-        fun start(context: Context) {
-            val intent = Intent(context, MenuCategoryActivity::class.java)
-            intent.putExtra("flag", context.javaClass.getSimpleName())
-            context.startActivity(intent)
-        }
     }
 }

@@ -2,6 +2,7 @@ package com.jquery404.foodie.main
 
 import android.os.Bundle
 import com.jquery404.foodie.R
+import com.jquery404.foodie.helpers.ActivityHelper
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseCompatActivity() {
@@ -15,12 +16,12 @@ class MainActivity : BaseCompatActivity() {
     private fun init() {
 
         btnLogin.setOnClickListener {
-            //Login.start(this)
-            MenuCategoryActivity.start(this)
+            //LoginActivity.start(this)
+            ActivityHelper.start(this, MenuCategoryActivity::class.java)
         }
 
         btnSignup.setOnClickListener {
-            Signup.start(this)
+            ActivityHelper.start(this, SignupActivity::class.java)
         }
 
     }

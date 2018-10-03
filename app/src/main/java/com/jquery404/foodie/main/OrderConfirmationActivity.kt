@@ -12,16 +12,4 @@ class OrderConfirmationActivity : BaseCompatActivity() {
         setContentView(R.layout.activity_order_confirmation)
     }
 
-    companion object {
-        fun start(context: Context, extras: Bundle? = null) {
-            val intent = Intent(context, OrderConfirmationActivity::class.java)
-            extras?.let {
-                intent.putExtras(extras)
-            } ?: run {
-                intent.putExtra("flag", context.javaClass.getSimpleName())
-            }
-
-            context.startActivity(intent)
-        }
-    }
 }

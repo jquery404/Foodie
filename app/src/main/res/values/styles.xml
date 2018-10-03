@@ -27,4 +27,13 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="BtnMiniGray">
+        <item name="android:background">@drawable/bg_btn_skeleton</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:paddingLeft">@dimen/padding_large</item>
+        <item name="android:paddingRight">@dimen/padding_large</item>
+        <item name="android:paddingTop">@dimen/padding_small</item>
+        <item name="android:paddingBottom">@dimen/padding_small</item>
+    </style>
+
 </resources>

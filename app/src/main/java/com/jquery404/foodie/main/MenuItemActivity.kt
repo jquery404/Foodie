@@ -53,17 +53,4 @@ class MenuItemActivity : BaseCompatActivity() {
         compositeDisposable.clear()
         super.onStop()
     }
-
-    companion object {
-        fun start(context: Context, extras: Bundle? = null) {
-            val intent = Intent(context, MenuItemActivity::class.java)
-            extras?.let {
-                intent.putExtras(extras)
-            } ?: run {
-                intent.putExtra("flag", context.javaClass.getSimpleName())
-            }
-
-            context.startActivity(intent)
-        }
-    }
 }

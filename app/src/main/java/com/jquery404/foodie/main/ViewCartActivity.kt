@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 import com.jquery404.foodie.R
 import com.jquery404.foodie.api.service.IMenuItemApiService
+import com.jquery404.foodie.helpers.ActivityHelper
 import com.jquery404.foodie.main.adapters.ViewCartAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -53,7 +54,7 @@ class ViewCartActivity : BaseCompatActivity(), View.OnClickListener {
     override fun onClick(v: View) {
         when (v.id) {
             R.id.btnPlaceOrder -> {
-                OrderConfirmationActivity.start(this)
+                ActivityHelper.start(this, OrderConfirmationActivity::class.java)
             }
         }
     }
@@ -61,14 +62,6 @@ class ViewCartActivity : BaseCompatActivity(), View.OnClickListener {
     override fun onStop() {
         compositeDisposable.clear()
         super.onStop()
-    }
-
-    companion object {
-        fun start(context: Context) {
-            val intent = Intent(context, ViewCartActivity::class.java)
-            intent.putExtra("flag", context.javaClass.getSimpleName())
-            context.startActivity(intent)
-        }
     }
 
 }

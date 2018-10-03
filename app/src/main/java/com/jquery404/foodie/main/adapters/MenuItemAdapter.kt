@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.jquery404.foodie.R
+import com.jquery404.foodie.helpers.ActivityHelper
 import com.jquery404.foodie.main.MenuDetailsActivity
 import com.jquery404.foodie.main.models.MenuItem
 import com.squareup.picasso.Picasso
@@ -60,7 +61,7 @@ class MenuItemAdapter(private val ctx: Context) :
             val extras = Bundle()
             extras.putString("IMAGE_PATH", imgThumb)
             extras.putString("DESCRIPTION", foodDesc)
-            MenuDetailsActivity.start(view.context, extras)
+            ActivityHelper.start(view.context, MenuDetailsActivity::class.java, extras)
         }
 
     }
