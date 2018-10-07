@@ -1,11 +1,8 @@
 package com.jquery404.foodie.main
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import com.jquery404.foodie.R
 import com.jquery404.foodie.helpers.ActivityHelper
-import com.jquery404.foodie.helpers.PreferenceHelper
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_menu_details.*
 import kotlinx.android.synthetic.main.layout_add_to_cart.*

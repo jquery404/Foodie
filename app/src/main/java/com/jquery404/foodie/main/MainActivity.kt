@@ -16,12 +16,15 @@ class MainActivity : BaseCompatActivity() {
     private fun init() {
 
         btnLogin.setOnClickListener {
-            //LoginActivity.start(this)
             ActivityHelper.start(this, MenuCategoryActivity::class.java)
         }
 
         btnSignup.setOnClickListener {
             ActivityHelper.start(this, SignupActivity::class.java)
+        }
+
+        ivLogo.setOnClickListener {
+            ActivityHelper.start(this, ImageGalleryActivity::class.java)
         }
 
     }

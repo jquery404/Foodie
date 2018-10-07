@@ -9,5 +9,4 @@ abstract class BaseCompatActivity : AppCompatActivity() {
         finish()
         super.onBackPressed()
     }
-
 }

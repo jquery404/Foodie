@@ -67,6 +67,7 @@ dependencies {
     implementation "com.android.support:support-v4:${packver.supportLibrary}"
     implementation "com.android.support:design:${packver.supportLibrary}"
     implementation "com.android.support:cardview-v7:${packver.supportLibrary}"
+    implementation "com.android.support:support-dynamic-animation:${packver.supportLibrary}"
 
     // layout
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'

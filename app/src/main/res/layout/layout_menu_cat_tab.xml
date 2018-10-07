@@ -4,20 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--Tab view -->
-    <include
-        android:id="@+id/include"
-        layout="@layout/layout_menu_cat_tab"
-        android:layout_width="match_parent"
-        android:layout_height="200dp" />
-    <!-- /Tab view -->
-
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvMenuItem"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tlCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
+        app:tabGravity="fill"
+        app:tabMode="scrollable" />
 
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vpMenuCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tlCategory" />
 
 </android.support.constraint.ConstraintLayout>
