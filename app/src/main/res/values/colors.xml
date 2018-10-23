@@ -8,15 +8,16 @@
     <color name="white">#fff</color>
     <color name="black">#000</color>
 
-
-
-
+    <color name="megenta">#ffea00</color>
+    <color name="pink">#ffd6c0</color>
+    <color name="red">#ff000d</color>
+    <color name="green">#80ff00</color>
+    <color name="blue">#0011ff</color>
 
 
     <color name="card_cat_title_bg">@color/transparent_gray</color>
 
     <color name="btn_primary_bg">@color/colorPrimary</color>
-
 
 
 </resources>

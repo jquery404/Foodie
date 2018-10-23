@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="StarAnimationView">
+        <attr name="starsView_starCount" format="integer" />
+        <attr name="starsView_starColors" format="reference" />
+        <attr name="starsView_minStarSize" format="dimension"/>
+        <attr name="starsView_maxStarSize" format="dimension"/>
+        <attr name="starsView_bigStarThreshold" format="dimension"/>
+    </declare-styleable>
+
+
+    <integer-array name="star_colors">
+        <!-- This is how you can configure the ratio of star colors-->
+        <item>@color/pink</item>
+        <item>@color/black</item>
+        <item>@color/red</item>
+        <item>@color/green</item>
+        <item>@color/blue</item>
+        <item>@color/megenta</item>
+    </integer-array>
+
+</resources>

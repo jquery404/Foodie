@@ -9,19 +9,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <ImageView
-        android:id="@+id/ivAnimate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:visibility="invisible"
+    <com.jquery404.foodie.custom.StarAnimationView
+        android:id="@+id/starAnimView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:starsView_bigStarThreshold="16dp"
+        app:starsView_maxStarSize="32dp"
+        app:starsView_minStarSize="1dp"
+        app:starsView_starColors="@array/star_colors"
+        app:starsView_starCount="35"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/rvImageGallery"
-        app:srcCompat="@drawable/ic_heart" />
+        app:layout_constraintTop_toTopOf="@+id/rvImageGallery" />
+
+
 
 </android.support.constraint.ConstraintLayout>

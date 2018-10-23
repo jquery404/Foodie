@@ -1,8 +1,8 @@
 package com.jquery404.foodie.main
 
-import android.app.AlertDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.support.v7.app.AlertDialog
 import android.view.View
 
 abstract class BaseDialogHelper {

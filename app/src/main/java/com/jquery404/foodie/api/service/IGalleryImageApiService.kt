@@ -9,7 +9,7 @@ import retrofit2.http.Query
 
 interface IGalleryImageApiService {
     @GET("/sandbox/foodapp/api/food.php")
-    fun getGallery(@Query("task") task: String): Observable<GalleryImageResponse>
+    fun getGallery(@Query("task") task: String): Observable<GalleryImageResponse.GalleryImage>
 
 
     companion object {

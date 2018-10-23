@@ -5,14 +5,17 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.jquery404.foodie.R
+import com.jquery404.foodie.api.service.GalleryImageResponse
 import com.jquery404.foodie.main.ImageGalleryActivity
-import com.jquery404.foodie.main.models.GalleryItem
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.layout_menu_cat_content.view.*
 
-class GalleryImageAdapter(private val ctx: Context) : RecyclerView.Adapter<GalleryImageAdapter.GalleryViewHolder>() {
-    private val galleryItemList: MutableList<GalleryItem> = mutableListOf()
+class GalleryImageAdapter(private val ctx: Context) :
+        RecyclerView.Adapter<GalleryImageAdapter.GalleryViewHolder>() {
+
+    private val galleryItemList: MutableList<GalleryImageResponse.GalleryItem> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GalleryImageAdapter.GalleryViewHolder {
         val view = LayoutInflater.from(ctx).inflate(R.layout.layout_menu_cat_content, parent, false)
@@ -27,7 +30,7 @@ class GalleryImageAdapter(private val ctx: Context) : RecyclerView.Adapter<Galle
         return galleryItemList.size
     }
 
-    fun setGallery(record: List<GalleryItem>) {
+    fun setGallery(record: List<GalleryImageResponse.GalleryItem>) {
         galleryItemList.addAll(record)
         notifyDataSetChanged()
     }
@@ -37,19 +40,21 @@ class GalleryImageAdapter(private val ctx: Context) : RecyclerView.Adapter<Galle
         val tvTitle = view.tvCatTitle
         val ivThumb = view.ivCatThumb
         var id: Int? = null
+        var questionList: List<GalleryImageResponse.QuestionItem>? = null
 
         init {
             view.setOnClickListener(this)
         }
 
-        fun bindModel(galleryItem: GalleryItem) {
+        fun bindModel(galleryItem: GalleryImageResponse.GalleryItem) {
             tvTitle.text = galleryItem.title
             Picasso.get().load(galleryItem.thumb).into(ivThumb)
             id = galleryItem.id
+            questionList = galleryItem.questionList
         }
 
         override fun onClick(v: View) {
-            (ctx as ImageGalleryActivity).animatingNow()
+            (ctx as ImageGalleryActivity).showDialog(questionList!!.size, questionList!!)
         }
 
     }
